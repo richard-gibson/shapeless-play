@@ -9,6 +9,10 @@ lazy val `shapeless-play` =
     .settings(settings)
     .settings(
       libraryDependencies ++= Seq(
+        library.shapeless withSources(),
+        library.cats withSources(),
+        library.jawnP withSources(),
+        library.jawnAST withSources(),
         library.scalaCheck % Test,
         library.scalaTest  % Test
       )
@@ -21,16 +25,23 @@ lazy val `shapeless-play` =
 lazy val library =
   new {
     object Version {
-      val scalaCheck = "1.13.4"
-      val scalaTest  = "3.0.1"
+      val shapeless   = "2.3.2"
+      val cats        = "0.8.1"
+      val scalaCheck  = "1.13.4"
+      val scalaTest   = "3.0.1"
+      val jawn        = "0.10.4"
     }
-    val scalaCheck = "org.scalacheck" %% "scalacheck" % Version.scalaCheck
-    val scalaTest  = "org.scalatest"  %% "scalatest"  % Version.scalaTest
+    val scalaCheck  = "org.scalacheck" %% "scalacheck" % Version.scalaCheck
+    val scalaTest   = "org.scalatest"  %% "scalatest"  % Version.scalaTest
+    val shapeless   = "com.chuusai" %% "shapeless" % Version.shapeless
+    val jawnP       = "org.spire-math" %% "jawn-parser" % Version.jawn
+    val jawnAST     = "org.spire-math" %% "jawn-ast" % Version.jawn
+    val cats        = "org.typelevel"  %% "cats" % Version.cats
 }
 
 // *****************************************************************************
 // Settings
-// *****************************************************************************        |
+// *****************************************************************************
 
 lazy val settings =
   commonSettings ++
